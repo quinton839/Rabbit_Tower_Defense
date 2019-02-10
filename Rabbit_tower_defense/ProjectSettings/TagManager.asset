@@ -52,6 +52,9 @@ TagManager:
   - name: Character
     uniqueID: 1687584983
     locked: 0
-  - name: EnemyWolf
+  - name: EnemyWolf1
     uniqueID: 1008956241
+    locked: 0
+  - name: EnemyWolf2
+    uniqueID: 1917384085
     locked: 0
