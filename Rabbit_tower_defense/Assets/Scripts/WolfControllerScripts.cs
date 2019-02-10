@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WolfControllerScripts : MonoBehaviour
 {
-    public float maxSpeed = 10f;
-    bool facingRight = true;
     Animator anim;
     Rigidbody2D rigi;
-    public float jumpForce = 700f;
+    float move = 0;
+    public float moveSpeed = 1f;
+    public bool facingRight = true;
+    public float attackSpeed = 1f;
     public bool gotTarget = false;
     public Transform targetCheck;
     public LayerMask whatIsTarget;
@@ -18,28 +19,26 @@ public class WolfControllerScripts : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rigi = GetComponent<Rigidbody2D>();
+        anim.SetFloat("Attack Speed", attackSpeed);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         gotTarget = Physics2D.OverlapBox(targetCheck.position, new Vector2(0.01f, 20), 0f, whatIsTarget);
+        anim.SetBool("Target", gotTarget);
+        if (gotTarget)
+            move = 0;
+        else
+            move = moveSpeed;
 
-        anim.SetFloat("vSpeed", rigi.velocity.y);
-
-        float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Speed", Mathf.Abs(move));
-        rigi.velocity = new Vector2(move * maxSpeed, rigi.velocity.y);
-
-        if (move > 0 && !facingRight)
-            flip();
-        else if (move < 0 && facingRight)
-            flip();
+        rigi.velocity = new Vector2(move, rigi.velocity.y);
 
     }
     void Update()
     {
-        
+
     }
     void flip()
     {
@@ -48,5 +47,4 @@ public class WolfControllerScripts : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
 }
