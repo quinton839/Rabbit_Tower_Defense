@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WolfControllerScripts : MonoBehaviour
+public class RabbitControllerScripts : MonoBehaviour
 {
     Animator anim;
     Rigidbody2D rigi;
@@ -25,18 +25,18 @@ public class WolfControllerScripts : MonoBehaviour
         SpriteRenderer[] spriteList = GetComponentsInChildren<SpriteRenderer>();
         for (int i = 0; i < spriteList.Length; i++)
             spriteList[i].sortingLayerName = whatIsLayer;
-
+ 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        gotTarget = Physics2D.OverlapBox(targetCheck.position, new Vector2(0.01f, 10), 0f, whatIsTarget);
+        gotTarget = Physics2D.OverlapBox(targetCheck.position, new Vector2(0.001f, 10), 0f, whatIsTarget);
         anim.SetBool("Target", canAttack && gotTarget);
         if (gotTarget)
             move = 0;
         else
-            move = moveSpeed;
+            move = -moveSpeed;
 
         anim.SetFloat("Speed", Mathf.Abs(move));
         rigi.velocity = new Vector2(move, rigi.velocity.y);
@@ -63,5 +63,4 @@ public class WolfControllerScripts : MonoBehaviour
                 target.GetComponentInChildren<HealthController>().health -= 1f;
         }
     }
-
 }

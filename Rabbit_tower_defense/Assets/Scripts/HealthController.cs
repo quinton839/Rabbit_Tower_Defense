@@ -20,9 +20,13 @@ public class HealthController : MonoBehaviour
         if (health > maxHealth)
             health = maxHealth;
         else if (health <= 0)
+        {
             health = 0;
+            Destroy(this.gameObject.transform.parent.gameObject, 0.1f);
+        }
 
         theScale.x = health / maxHealth;
         valueBar.localScale = theScale;
     }
+    
 }

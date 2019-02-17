@@ -1,10 +1,14 @@
 fileFormatVersion: 2
-guid: 8b0787e9e1ad8ab4c8d9d77b41e17246
+guid: 4a0d3b2c364014b44ab0084dff238cb6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: carrotSwordAttack
-    21300002: wolfAttack
-    21300004: Attack_2
+    21300000: rabbbit_carrotSword
+    21300002: rabbbit_head
+    21300004: rabbbit_hand
+    21300006: rabbbit_body
+    21300008: rabbbit_leg
+    21300010: rabbbit_foot
+    2186277476908879412: ImportLogs
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -109,41 +113,121 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: wolfAttack
+      name: rabbbit_carrotSword
       rect:
         serializedVersion: 2
-        x: 776
-        y: 617
-        width: 245
-        height: 388
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 406
+        y: 727
+        width: 39
+        height: 136
+      alignment: 9
+      pivot: {x: 0.5, y: 0.145}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d96cfce6d8e6d1d48a2ae589a900bdc8
+      spriteID: 26d0352f2aec2654c8f9056f966fe18c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: carrotSwordAttack
+      name: rabbbit_head
       rect:
         serializedVersion: 2
-        x: 28
-        y: 492
-        width: 391
-        height: 514
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 493
+        y: 728
+        width: 168
+        height: 234
+      alignment: 9
+      pivot: {x: 0.51494014, y: 0.0491839}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 094f2071773d09140887f7a7d281d5ee
+      spriteID: 2d8fa761ea027244fa639f0154cdc26f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbbit_hand
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 598
+        width: 136
+        height: 84
+      alignment: 9
+      pivot: {x: 0.7759904, y: 0.553477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a601dd9ec8cd1f46862903d87164cf6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbbit_body
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 499
+        width: 127
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db44f9e33eebe2a4e83b68c43881f5ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbbit_leg
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 461
+        width: 70
+        height: 104
+      alignment: 9
+      pivot: {x: 0.52182007, y: 0.73550296}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2272f9df6a8211c47861b1f55ec42c4e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rabbbit_foot
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 419
+        width: 77
+        height: 50
+      alignment: 9
+      pivot: {x: 0.7079896, y: 0.70969176}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b87e338c823674599a491a34070330
       vertices: []
       indices: 
       edges: []
@@ -151,7 +235,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 296f28f1979050d4c9e5129e04846836
+    spriteID: 1ad6eb7c00f44cc499d7a466ee9ef5dd
     vertices: []
     indices: 
     edges: []

@@ -15,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - Emeny
+  - Enemy
   - Denfener
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
   - name: Tower
     uniqueID: 2728422753
     locked: 1
+  - name: Ui
+    uniqueID: 1473141707
+    locked: 0
   - name: Character
     uniqueID: 1687584983
     locked: 0
@@ -57,4 +60,10 @@ TagManager:
     locked: 0
   - name: EnemyWolf2
     uniqueID: 1917384085
+    locked: 0
+  - name: DefenderRabbit1
+    uniqueID: 1283733243
+    locked: 0
+  - name: DefenderRabbit2
+    uniqueID: 839342647
     locked: 0
