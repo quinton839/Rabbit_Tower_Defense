@@ -152,7 +152,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 2.4}
@@ -867,7 +867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528354053028123038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: -2.99, z: 0}
+  m_LocalPosition: {x: 4.5, y: -3.5, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 528354052121399102}
@@ -888,7 +888,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1.3826549
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -976,9 +976,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1dfbc1a5d853c4ab1debc1fdb26376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacked: 0
+  facingRight: 0
   moveSpeed: 1
-  canAttack: 1
-  attackSpeed: 1
+  attackSpeed: 1.2
   targetCheck: {fileID: 528354053636256453}
   whatIsTarget:
     serializedVersion: 2
