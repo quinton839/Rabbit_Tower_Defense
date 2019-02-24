@@ -78,7 +78,8 @@ public class Character : MonoBehaviour
   {
     if (this.gameObject.layer == 8)
     {
-      GameObject.Find("GameManager").GetComponentInChildren<GameManger>().EnemyCount--;
+      if (GameObject.Find("GameManager"))
+        GameObject.Find("GameManager").GetComponentInChildren<GameManger>().EnemyCount--;
     }
   }
 }
