@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Defender
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -54,16 +53,4 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1687584983
-    locked: 0
-  - name: EnemyWolf1
-    uniqueID: 1008956241
-    locked: 0
-  - name: EnemyWolf2
-    uniqueID: 1917384085
-    locked: 0
-  - name: DefenderRabbit1
-    uniqueID: 1283733243
-    locked: 0
-  - name: DefenderRabbit2
-    uniqueID: 839342647
     locked: 0
