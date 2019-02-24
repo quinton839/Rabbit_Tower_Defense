@@ -10,8 +10,6 @@ public class WolfControllerScripts : Character
     }
     public override void ChildFixedUpdate()
     {
-        string current = anim.runtimeAnimatorController.animationClips[0].name;
-        // float time = anim.runtimeAnimatorController.animationClips[0].;
     }
 
 }

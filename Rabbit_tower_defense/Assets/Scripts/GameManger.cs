@@ -6,62 +6,70 @@ using UnityEngine.UI;
 
 public class GameManger : MonoBehaviour
 {
-  public int carrotCount = 10;
-  public Transform spawnDenfenderPosition;
-  public Transform spawnEnemyPosition;
+  public int carrotCount = 10, EnemyCount = 0;
+  public Transform spawnDenfenderPosition, spawnEnemyPosition;
   public GameObject[] UiLevel;
-  public GameObject rabbitWarrior;
-  public GameObject wolfNormal;
-  public Text carrotCountView;
-  public Text timeView;
+  public GameObject tower, gameResult;
+  public GameObject rabbitWarrior, wolfNormal;
+  public Text carrotCountText, timeText;
+  bool winLoseCheck = false, timerStarted = false;
   private float time = 0;
-  private int carrotPlusTimer;
+  private int carrotPlusTimer = 0, defenderCount = 0;
+
   // Start is called before the first frame update
   void Start()
   {
-    carrotCountView.text = carrotCount.ToString();
-    timeView.text = "Time : " + (int)time + "s";
   }
 
   // Update is called once per frame
   void Update()
   {
-    if (Time.time - time >= 1)
-    {
-      time = Time.time;
-      OneSecondTimer();
-    }
-    if (carrotPlusTimer >= 2)
-    {
-      carrotPlusTimer = 0;
-      carrotCount++;
-    }
-    if (carrotCountView.text != carrotCount.ToString())
-      carrotCountView.text = carrotCount.ToString();
+    if (carrotCountText.text != carrotCount.ToString())
+      carrotCountText.text = carrotCount.ToString();
+    if (winLoseCheck)
+      WinLoseCheck();
   }
 
-  void OneSecondTimer()
+  private IEnumerator GameTimer()
   {
-    carrotPlusTimer++;
-    timeView.text = "Time : " + (int)time + "s";
+    for (float i = 0; timerStarted; i += Time.deltaTime)
+    {
+      if (i >= 1)
+      {
+        if (carrotPlusTimer++ >= 2)
+        {
+          carrotPlusTimer = 0;
+          carrotCount++;
+        }
+        timeText.text = "Time : " + (int)(++time) + "s";
+        i = 0;
+      }
+      yield return 0;
+    }
   }
 
   public void StartLevel(int level)
   {
-
+    carrotCount = 10;
+    time = 0;
+    timerStarted = true;
+    carrotCountText.text = carrotCount.ToString();
+    timeText.text = "Time : " + (int)time + "s";
+    foreach (GameObject index in UiLevel)
+    {
+      if (index != null)
+        index.SetActive(false);
+    }
+    gameResult.SetActive(false);
+    UiLevel[level].SetActive(true);
     StartCoroutine(Level(level));
+    StartCoroutine(GameTimer());
   }
 
   IEnumerator Level(int level)
   {
     int[] enemyType = null;
     int time = 0;
-    foreach (GameObject index in UiLevel)
-    {
-      if (index != null)
-        index.SetActive(false);
-    }
-    UiLevel[level].SetActive(true);
 
     switch (level)
     {
@@ -79,8 +87,9 @@ public class GameManger : MonoBehaviour
       }
       yield return 0;
     }
+    winLoseCheck = true;
   }
-  int defenderCount = 0;
+
   public void SpawnDefender(int defenderType)
   {
     GameObject defender = null;
@@ -100,14 +109,13 @@ public class GameManger : MonoBehaviour
     }
     if (enoughCarrot && defender != null)
     {
+      defenderCount++;
       defender.transform.position = RandomPosition(spawnDenfenderPosition.position);
       defender.name = "Defender_" + defenderCount;
       Instantiate(defender);
-      defenderCount++;
       StartCoroutine(SortCharacter());
     }
   }
-  int EnemyCount = 0;
   public void SpawnEnemy(int enemyType)
   {
     GameObject enemy = null;
@@ -117,23 +125,24 @@ public class GameManger : MonoBehaviour
       case 1: enemy = wolfNormal; break;
     }
 
+    EnemyCount++;
     enemy.transform.position = RandomPosition(spawnEnemyPosition.position);
     enemy.name = "Enemy_" + EnemyCount;
     Instantiate(enemy);
-    EnemyCount++;
     StartCoroutine(SortCharacter());
   }
 
   Vector3 RandomPosition(Vector3 position)
   {
 
-    int random = Random.Range(0, 3);
+    int random = Random.Range(0, 4);
     float offset = 0f;
     switch (random)
     {
       case 0: offset = 0f; break;
-      case 1: offset = 0.3f; break;
-      case 2: offset = 0.6f; break;
+      case 1: offset = 0.2f; break;
+      case 2: offset = 0.4f; break;
+      case 3: offset = 0.6f; break;
     }
     position.Set(position.x, position.y + offset, position.z);
     return position;
@@ -150,5 +159,37 @@ public class GameManger : MonoBehaviour
     characters = sortTemp.ThenBy(gameObject => gameObject.transform.position.x).ToArray();
     foreach (GameObject character in characters)
       character.GetComponent<Character>().ChangeSortId(sortIndex++);
+  }
+
+  private void WinLoseCheck()
+  {
+    bool endLevel = false;
+    Text gameResultText = gameResult.GetComponentInChildren<Text>();
+    if (tower == null)
+    {
+      Debug.Log("LOSE!");
+      gameResultText.text = "LOSE!";
+      endLevel = true;
+    }
+    else if (EnemyCount == 0)
+    {
+      Debug.Log("WIN!");
+      gameResultText.text = "WIN!";
+      endLevel = true;
+    }
+
+    if (endLevel)
+    {
+      gameResult.SetActive(true);
+      GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+      foreach (GameObject character in characters) Destroy(character);
+      foreach (GameObject index in UiLevel)
+      {
+        if (index != null)
+          index.SetActive(false);
+      }
+      UiLevel[0].SetActive(true);
+      timerStarted = winLoseCheck = false;
+    }
   }
 }

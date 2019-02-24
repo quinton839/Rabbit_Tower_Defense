@@ -74,4 +74,11 @@ public class Character : MonoBehaviour
       spriteList[i].sortingOrder = sortingOrderTemp + sortIndex * 10;
     }
   }
+  private void OnDestroy()
+  {
+    if (this.gameObject.layer == 8)
+    {
+      GameObject.Find("GameManager").GetComponentInChildren<GameManger>().EnemyCount--;
+    }
+  }
 }

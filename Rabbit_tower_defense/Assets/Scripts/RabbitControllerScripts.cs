@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RabbitControllerScripts : Character
 {
-  public override void ChildStart() { }
+  public override void ChildStart() { 
+    GameObject.Find("CarrotAttack").SetActive(false);
+  }
   public override void ChildUpdate() { }
   public override void ChildFixedUpdate()
   {

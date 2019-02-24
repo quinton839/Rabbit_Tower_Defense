@@ -45,12 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 3050269461
     locked: 1
-  - name: Tower
-    uniqueID: 2728422753
-    locked: 1
   - name: Ui
     uniqueID: 1473141707
     locked: 0
   - name: Character
     uniqueID: 1687584983
     locked: 0
+  - name: Tower
+    uniqueID: 2728422753
+    locked: 1
