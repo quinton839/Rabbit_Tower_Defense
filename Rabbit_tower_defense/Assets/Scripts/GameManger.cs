@@ -9,6 +9,7 @@ public class GameManger : MonoBehaviour
   public int carrotCount = 10;
   public Transform spawnDenfenderPosition;
   public Transform spawnEnemyPosition;
+  public GameObject[] UiLevel;
   public GameObject rabbitWarrior;
   public GameObject wolfNormal;
   public Text carrotCountView;
@@ -43,11 +44,11 @@ public class GameManger : MonoBehaviour
   {
     carrotPlusTimer++;
     timeView.text = "Time : " + (int)time + "s";
-    SortCharacter();
   }
 
   public void StartLevel(int level)
   {
+
     StartCoroutine(Level(level));
   }
 
@@ -55,6 +56,13 @@ public class GameManger : MonoBehaviour
   {
     int[] enemyType = null;
     int time = 0;
+    foreach (GameObject index in UiLevel)
+    {
+      if (index != null)
+        index.SetActive(false);
+    }
+    UiLevel[level].SetActive(true);
+
     switch (level)
     {
       case 1:
@@ -96,6 +104,7 @@ public class GameManger : MonoBehaviour
       defender.name = "Defender_" + defenderCount;
       Instantiate(defender);
       defenderCount++;
+      StartCoroutine(SortCharacter());
     }
   }
   int EnemyCount = 0;
@@ -112,6 +121,7 @@ public class GameManger : MonoBehaviour
     enemy.name = "Enemy_" + EnemyCount;
     Instantiate(enemy);
     EnemyCount++;
+    StartCoroutine(SortCharacter());
   }
 
   Vector3 RandomPosition(Vector3 position)
@@ -129,16 +139,16 @@ public class GameManger : MonoBehaviour
     return position;
   }
 
-  void SortCharacter()
+  private IEnumerator SortCharacter()
   {
+    yield return new WaitForSeconds(0.1f);
     GameObject[] characters;
+    int sortIndex = 0;
     characters = GameObject.FindGameObjectsWithTag("Character");
-    IOrderedEnumerable<GameObject> sortTemp = characters.OrderBy(gameObject => gameObject.transform.position.y);
-    sortTemp.ThenByDescending(gameObject => gameObject.layer);
-    characters = sortTemp.ThenByDescending(gameObject => gameObject.transform.position.x).ToArray();
+    IOrderedEnumerable<GameObject> sortTemp = characters.OrderByDescending(gameObject => gameObject.transform.position.y);
+    sortTemp.ThenBy(gameObject => gameObject.layer);
+    characters = sortTemp.ThenBy(gameObject => gameObject.transform.position.x).ToArray();
     foreach (GameObject character in characters)
-    {
-        // character.gameObject. ChangeSortId()
-    }
+      character.GetComponent<Character>().ChangeSortId(sortIndex++);
   }
 }

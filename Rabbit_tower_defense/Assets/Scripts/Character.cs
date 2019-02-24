@@ -42,14 +42,13 @@ public class Character : MonoBehaviour
     if (gotTarget)
       move = 0;
     else
-      move = 0;//facingRight ? moveSpeed : -moveSpeed;
+      move = facingRight ? moveSpeed : -moveSpeed;
 
     anim.SetFloat("Speed", Mathf.Abs(move));
     rigi.velocity = new Vector2(move, rigi.velocity.y);
     ChildFixedUpdate();
   }
   public virtual void ChildFixedUpdate() { }
-
   public void OnTriggerEnter2D(Collider2D other)
   {
     GameObject target;
@@ -66,7 +65,6 @@ public class Character : MonoBehaviour
       attacked = true;
     }
   }
-
   public void ChangeSortId(int sortIndex)
   {
     for (int i = 0; i < spriteList.Length; i++)

@@ -485,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528354052562179415}
   - component: {fileID: 528354052562179414}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: CarrotSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 528354053988863913}
   - component: {fileID: 528354053988863912}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: CarrotSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
